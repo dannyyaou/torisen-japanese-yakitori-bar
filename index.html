@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Torisen Japanese yakitori &amp; bar | Japanese Yakitori &amp; Bar, Birmingham</title>
+    <meta name="description" content="Torisen Japanese yakitori &amp; bar - Authentic Japanese yakitori and bar in Birmingham. Charcoal-grilled skewers, sake, and Japanese craft cocktails." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0D0D0D;
+            --bg-elevated: #1A1A1A;
+            --bg-card: #141414;
+            --accent: #D4A017;
+            --accent-light: #E8C547;
+            --text: #F5F5F5;
+            --text-muted: #999;
+            --text-dim: #666;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== NAV ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.2em 3em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.4s, padding 0.3s;
+        }
+        .nav.scrolled {
+            background: rgba(13,13,13,0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 0.8em 3em;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-brand {
+            font-family: 'Noto Sans JP', serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5em;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 0.6em 1.5em;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8em;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile nav */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=AaVGc3m8bsmEUiVEdyvauF4rT24APXf9MsOQink9winUBxLANyijuvPJl3wXKf69uZ1TwMjNbra5y1BUyk9liW882A74k9dcrUzGD8tIbX-96wWtoggrqATznmAUXjbpyUD0WZGdZKe9OtXwX4sQfmEg7oWXWE8mYFXDg6aBYQZxQaNxqQ7Emy887WITW00UzwVqO5HYhUb-RaxW8gmkkIJVrWTvngtHUPQh5qL3vm9aFor6HExpvJUdSXmu0YRukIuJ7Tuatfe0FVEQKuJpkPfKGC3OPfYebTgWXeT7Yt4seiuaROsmr5oH2RsaKifpSYD37cJFv9z3UYg-PxpQo-HWrAi3F-wOJPrekUblPmrhonkLMjQcWJGtu37e4Bij3h_QgWq7RbhpIQWL9w4b6ZghJxbpkuPCZmzMbX6LxKs7kt3hGwOK67FEGlAGlu8yDnDD&key=AIzaSyALhwc_Au67HxWrh13h3Pjnf4fm0701zYQ') center/cover no-repeat;
+            filter: brightness(0.3);
+            transform: scale(1.05);
+            transition: transform 8s ease-out;
+        }
+        .hero:hover .hero-bg { transform: scale(1); }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(13,13,13,0.4) 0%, rgba(13,13,13,0.7) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2em;
+            max-width: 800px;
+        }
+        .hero-content h1 {
+            font-family: 'Noto Sans JP', serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.3em;
+            line-height: 1.1;
+        }
+        .hero-tagline {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 2.5em;
+            letter-spacing: 0.1em;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 1em 3em;
+            font-weight: 600;
+            font-size: 0.9em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .hero-cta:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212,160,23,0.3);
+        }
+        .hero-scroll {
+            position: absolute;
+            bottom: 2em;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-muted);
+            font-size: 0.75em;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 1; transform: translateX(-50%) translateY(5px); }
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 8em 2em;
+        }
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-label {
+            font-size: 0.75em;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5em;
+        }
+        .section-title {
+            font-family: 'Noto Sans JP', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 0.5em;
+            line-height: 1.2;
+        }
+        .section-subtitle {
+            font-size: 1.1em;
+            color: var(--text-muted);
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6em;
+            align-items: center;
+        }
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 2;
+            margin-bottom: 1.5em;
+            font-size: 1em;
+        }
+        .about-image {
+            position: relative;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 4px;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+        }
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: -1em;
+            right: -1em;
+            bottom: 1em;
+            left: 1em;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* ===== MENU ===== */
+        .menu-section {
+            background: var(--bg-elevated);
+        }
+        .menu-categories {
+            display: flex;
+            gap: 1em;
+            margin-bottom: 3em;
+            flex-wrap: wrap;
+        }
+        .menu-cat-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.6em 1.5em;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 0.85em;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+        }
+        .menu-cat-btn.active, .menu-cat-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1.2em 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .menu-item-name {
+            font-weight: 500;
+            font-size: 1em;
+        }
+        .menu-item-desc {
+            font-size: 0.85em;
+            color: var(--text-dim);
+            margin-top: 0.3em;
+        }
+        .menu-item-price {
+            color: var(--accent);
+            font-weight: 600;
+            white-space: nowrap;
+            margin-left: 1em;
+        }
+        .menu-category {
+            display: none;
+        }
+        .menu-category.active {
+            display: grid;
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5em;
+        }
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 2px;
+            aspect-ratio: 1;
+        }
+        .gallery-item.gallery-wide {
+            grid-column: span 2;
+            aspect-ratio: 2/1;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease, filter 0.6s ease;
+            filter: brightness(0.85);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1);
+        }
+
+        /* ===== REVIEWS ===== */
+        .reviews-section {
+            background: var(--bg-elevated);
+            text-align: center;
+        }
+        .reviews-carousel {
+            max-width: 700px;
+            margin: 3em auto 0;
+            position: relative;
+        }
+        .review-slide {
+            display: none;
+            padding: 2em 1em;
+        }
+        .review-slide.active { display: block; animation: fadeUp 0.5s ease; }
+        .review-stars { margin-bottom: 1.5em; font-size: 1.2em; }
+        .review-text {
+            font-size: 1.15em;
+            line-height: 2;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 1.5em;
+        }
+        .review-author {
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        .carousel-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8em;
+            margin-top: 2em;
+        }
+        .carousel-prev, .carousel-next {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .carousel-prev:hover, .carousel-next:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .carousel-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-dim);
+            margin: 0 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .carousel-dot.active { background: var(--accent); transform: scale(1.5); }
+        .no-reviews { color: var(--text-muted); font-style: italic; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== LOCATION ===== */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4em;
+            align-items: start;
+        }
+        .location-info h3 {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 1em;
+            color: var(--text);
+        }
+        .location-info p, .location-info a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95em;
+            line-height: 2;
+        }
+        .location-info a:hover { color: var(--accent); }
+        .hours-list {
+            list-style: none;
+            padding: 0;
+        }
+        .hours-list li {
+            padding: 0.4em 0;
+            font-size: 0.9em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+        .map-container {
+            border-radius: 4px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(0.8) invert(0.92) contrast(0.9);
+        }
+
+        /* ===== RESERVATION CTA ===== */
+        .reserve-section {
+            text-align: center;
+            padding: 6em 2em;
+            background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg) 100%);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .reserve-section .section-title {
+            margin-bottom: 0.5em;
+        }
+        .reserve-section p {
+            color: var(--text-muted);
+            margin-bottom: 2em;
+            font-size: 1.05em;
+        }
+        .reserve-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 1em 3.5em;
+            font-weight: 600;
+            font-size: 0.9em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .reserve-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212,160,23,0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 4em 2em 2em;
+            border-top: 1px solid var(--border);
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2em;
+        }
+        .footer-brand {
+            font-family: 'Noto Sans JP', serif;
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+        .footer-links {
+            display: flex;
+            gap: 2em;
+        }
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85em;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 2em;
+            border-top: 1px solid var(--border);
+            font-size: 0.8em;
+            color: var(--text-dim);
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .nav { padding: 1em 1.5em; }
+            .nav-links { display: none; }
+            .nav-toggle { display: block; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(13,13,13,0.98);
+                padding: 2em;
+                gap: 1.5em;
+                border-bottom: 1px solid var(--border);
+            }
+            .about-content { grid-template-columns: 1fr; gap: 3em; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-item.gallery-wide { grid-column: span 2; }
+            .location-grid { grid-template-columns: 1fr; gap: 3em; }
+            .section { padding: 5em 1.5em; }
+        }
+        @media (max-width: 500px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item.gallery-wide { grid-column: span 1; aspect-ratio: 16/9; }
+        }
+
+        /* Demo banner */
+        .demo-banner {
+            background: var(--accent);
+            color: var(--bg);
+            text-align: center;
+            padding: 0.5em 1em;
+            font-size: 0.8em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1100;
+        }
+        .nav { top: 32px; }
+    </style>
+</head>
+<body>
+
+    <!-- Demo Banner -->
+    <div class="demo-banner">DEMO &amp; TESTING PURPOSES ONLY &mdash; This is a preview website, not yet live.</div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="mainNav">
+        <a href="#" class="nav-brand">Torisen Japanese yakitori &amp; bar</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            <span class="fas fa-bars"></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#location">Find Us</a></li>
+            <li><a href="tel:" class="nav-cta">Reserve</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-in">
+            <h1>Torisen Japanese yakitori &amp; bar</h1>
+            <p class="hero-tagline">Authentic Charcoal-Grilled Yakitori &amp; Japanese Bar</p>
+            <a href="tel:" class="hero-cta">Reserve a Table</a>
+        </div>
+        <div class="hero-scroll">Scroll to explore</div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section fade-in">
+        <div class="section-inner">
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="section-label">Our Story</p>
+                    <h2 class="section-title">The Art of Yakitori</h2>
+                    <p>At Torisen Japanese yakitori &amp; bar, we honour the centuries-old tradition of Japanese charcoal grilling. Each skewer is carefully prepared, seasoned with our house tare sauce, and grilled over binchotan charcoal to achieve the perfect smoky char.</p>
+                    <p>From premium chicken thigh to tender tsukune meatballs, our yakitori is crafted with the same dedication found in the backstreet izakayas of Tokyo. Paired with carefully selected sake, Japanese whisky, and craft cocktails, we bring an authentic slice of Japan to Birmingham.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=AaVGc3m8bsmEUiVEdyvauF4rT24APXf9MsOQink9winUBxLANyijuvPJl3wXKf69uZ1TwMjNbra5y1BUyk9liW882A74k9dcrUzGD8tIbX-96wWtoggrqATznmAUXjbpyUD0WZGdZKe9OtXwX4sQfmEg7oWXWE8mYFXDg6aBYQZxQaNxqQ7Emy887WITW00UzwVqO5HYhUb-RaxW8gmkkIJVrWTvngtHUPQh5qL3vm9aFor6HExpvJUdSXmu0YRukIuJ7Tuatfe0FVEQKuJpkPfKGC3OPfYebTgWXeT7Yt4seiuaROsmr5oH2RsaKifpSYD37cJFv9z3UYg-PxpQo-HWrAi3F-wOJPrekUblPmrhonkLMjQcWJGtu37e4Bij3h_QgWq7RbhpIQWL9w4b6ZghJxbpkuPCZmzMbX6LxKs7kt3hGwOK67FEGlAGlu8yDnDD&key=AIzaSyALhwc_Au67HxWrh13h3Pjnf4fm0701zYQ" alt="Torisen Japanese yakitori &amp; bar" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="section menu-section fade-in">
+        <div class="section-inner">
+            <p class="section-label">What We Serve</p>
+            <h2 class="section-title">Menu Highlights</h2>
+            <p class="section-subtitle" style="margin-bottom:3em;">Our menu changes with the seasons. Here are some of our signature offerings.</p>
+
+            <div class="menu-categories">
+                <button class="menu-cat-btn active" data-cat="skewers">Yakitori Skewers</button>
+                <button class="menu-cat-btn" data-cat="small-plates">Small Plates</button>
+                <button class="menu-cat-btn" data-cat="drinks">Drinks &amp; Sake</button>
+            </div>
+
+            <div class="menu-category active" id="cat-skewers">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Momo (Chicken Thigh)</div>
+                            <div class="menu-item-desc">Juicy thigh meat, tare or shio</div>
+                        </div>
+                        <span class="menu-item-price">&pound;3.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Tsukune (Meatball)</div>
+                            <div class="menu-item-desc">Hand-formed chicken meatball, egg yolk dip</div>
+                        </div>
+                        <span class="menu-item-price">&pound;4.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Negima (Chicken &amp; Leek)</div>
+                            <div class="menu-item-desc">Alternating chicken and Welsh leek</div>
+                        </div>
+                        <span class="menu-item-price">&pound;3.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Kawa (Chicken Skin)</div>
+                            <div class="menu-item-desc">Crispy folded skin, shio seasoning</div>
+                        </div>
+                        <span class="menu-item-price">&pound;3.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Shiitake Mushroom</div>
+                            <div class="menu-item-desc">Charcoal-grilled with soy butter</div>
+                        </div>
+                        <span class="menu-item-price">&pound;3.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Asparagus Bacon</div>
+                            <div class="menu-item-desc">Wrapped in thin pork belly</div>
+                        </div>
+                        <span class="menu-item-price">&pound;4.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" id="cat-small-plates">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Edamame</div>
+                            <div class="menu-item-desc">Steamed &amp; salted soybeans</div>
+                        </div>
+                        <span class="menu-item-price">&pound;4.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Karaage</div>
+                            <div class="menu-item-desc">Japanese fried chicken, kewpie mayo</div>
+                        </div>
+                        <span class="menu-item-price">&pound;7.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Gyoza</div>
+                            <div class="menu-item-desc">Pan-fried pork dumplings (6 pcs)</div>
+                        </div>
+                        <span class="menu-item-price">&pound;7.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Takoyaki</div>
+                            <div class="menu-item-desc">Octopus balls, bonito flakes, sauce</div>
+                        </div>
+                        <span class="menu-item-price">&pound;6.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Agedashi Tofu</div>
+                            <div class="menu-item-desc">Crispy silken tofu in dashi broth</div>
+                        </div>
+                        <span class="menu-item-price">&pound;6.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Rice Bowl</div>
+                            <div class="menu-item-desc">Steamed Japanese rice, furikake</div>
+                        </div>
+                        <span class="menu-item-price">&pound;3.50</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" id="cat-drinks">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Asahi Super Dry</div>
+                            <div class="menu-item-desc">Draft Japanese lager</div>
+                        </div>
+                        <span class="menu-item-price">&pound;5.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">House Sake (Hot/Cold)</div>
+                            <div class="menu-item-desc">Junmai, served your way</div>
+                        </div>
+                        <span class="menu-item-price">&pound;6.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Yuzu Highball</div>
+                            <div class="menu-item-desc">Whisky, yuzu, sparkling soda</div>
+                        </div>
+                        <span class="menu-item-price">&pound;9.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Japanese Whisky Flight</div>
+                            <div class="menu-item-desc">Three 25ml pours, rotating selection</div>
+                        </div>
+                        <span class="menu-item-price">&pound;18.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Umeshu Sour</div>
+                            <div class="menu-item-desc">Plum wine, citrus, soda</div>
+                        </div>
+                        <span class="menu-item-price">&pound;8.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Matcha Latte (Non-alc)</div>
+                            <div class="menu-item-desc">Ceremonial grade matcha, oat milk</div>
+                        </div>
+                        <span class="menu-item-price">&pound;4.50</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="section fade-in">
+        <div class="section-inner">
+            <p class="section-label">Atmosphere</p>
+            <h2 class="section-title" style="margin-bottom:1.5em;">A Glimpse Inside</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item gallery-wide"><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=AaVGc3keFX8eAWAZWlLSJa1HAHaXafuPxAsuyfiAvg1F7KIrRkQIJeu47iE90am5qY1euQuRE6XLGSOM8lsWz9bAG-zbRY2SlPZltdCaDDf5OSwgPtbsuckXnSB-kGMtM9A1qwooxyX9F8wlPFJj4hDxnTnO1M6IbKjCsy3_2I0ntYNgCOZziXtA5IibPoxjBjRPziYnQL2wXoORBSR7-xttamRGgIs89xyuxWfZ3wmNcYZcNiEgGgeqFo6AcLu0Rh8JP8eCatIL8aejcYycPom8UjEk3RoAvx6YyhN4453EEyBhIMx1oeFXVGkZ3AIHCVCETKiTOpVcf0Nvrm2gSLPXPfb9hWS-ZcA58qNbbXNA-R3tvXHWw3i5NRt5L5oVZWd8TTZEmmmmT_FQT_XQbHCgNkx_eDEHIT-Gxy64imj2_CT4aoOwjAk8KVkXdBQhjNjJ&key=AIzaSyALhwc_Au67HxWrh13h3Pjnf4fm0701zYQ" alt="Torisen Japanese yakitori &amp; bar photo 1" loading="lazy" /></div><div class="gallery-item "><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=AaVGc3lRyhCxiM8sJkCUH0mmtUTmwd-r-uY63MjT0stjSJadc7ncpxdJMdoqZXK0EDjK8LeoxGcvYg4muGm9Ytl_3n1d3N0N7rn2zDSEoU53tOGVHgGNrfDdlLsg6ODxzBq51G_W60M1FHKiFSV9NdPjTNqgEvEYGdravTORXT0GL_3vOhaEP0rxlihJKW7H3Q0u9rmO4bAzjHQyLdX2EypFPzOBRi14hbzQNbgogFMIhAoBZS8N8Pi3uUaf1smxfu5Rbk1nzko1npbgvMedSWiEXeApVsy7ovHY2GDkqoqqvtj8SZNYf96jSAekykoi_2euaCr-3ytXAdXpoFEOjGsbWA29h5NFvDwy9-J7XC8lo87611u-IjN_HRPZH0L4JBvla7vmpeTKw5dUgbzIp7U4myKw19oN3zWqCmaQZ9B1BaujBW0-ARgjBl-_jsvB7uig&key=AIzaSyALhwc_Au67HxWrh13h3Pjnf4fm0701zYQ" alt="Torisen Japanese yakitori &amp; bar photo 2" loading="lazy" /></div><div class="gallery-item "><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=AaVGc3l2SaMaZWZxNWSIeJZ-1-Mfo2CIHbh3miCNz4hXxJtV0PPDzeQ1ly9nH-n16UAWy0-OLE10wE7yR_RYHiZpKbChLk8bbWy6lyQRil4p9YH0vN26rOkYvRjSlOs2Yb3103l0zqbnfs68kMGcbLP7FnlcHixu9aE_dNM9jrE8kzsXs5nQzJHSNU3OvQWJFLic3uamLSWosDFTmY_aWspNJ1ZDi0KfA8VcCUUKS5G88cP1UuHFkWwZpB1_VfBG0hAfwmv6NW0GT9NL147YqT3gWt5w4zCfWi0mPyKtjIothXGGTi48mKpLQ1JfOckItzAVlag5t5lPsWA8qMem60r-Z6GwsMXcsjIxcAsxOvPKfayHbUzQ45sIWC3Pa_5NkJgoZkZdq0cfmsFf-QjCsvJY5ldDG2-hUfsrotszdlKTzUmJSkpv52uUpApxti4hpw&key=AIzaSyALhwc_Au67HxWrh13h3Pjnf4fm0701zYQ" alt="Torisen Japanese yakitori &amp; bar photo 3" loading="lazy" /></div><div class="gallery-item gallery-wide"><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=AaVGc3kqN-onhTBOuRAiBkbpUAw2QRqETF6yjtI3LBrWL8K8M5HcGyHP-bgzGZOtu9xN0a9QORhe_o2VbzcXvhkOSNrVBbzJg_3aIA7bbzp_JS9oudiKdb9AhIcMZ6ixl6SLONeYvArAUV-f6RgeMaeTgtuUvtqL1uejw6A931j-rzsM3_qQPrlQsTeqa88Y9o1Ra0hjnpF3z5ziJf2cNtPVTR8w3QOguXOvhnJ5Y0ZsL1OmQPGxATfnuY71RspCFI83QKzCgJTxdznfp96bZhbcGhq-th6qXskTb9LUlQpBsUA34fDITgPHIch1zyFO2iJmug8p7fZNIyMAzb5Bp2U5HIwNgCpvCv8UKiyrn45I8IJYhSVVtpDeHnrTllMG0MuFIH3z7tysJlRbG33fTOzegMdUfOsBkXImzRq9lm4HEmi8aM68bCFQNmGQ9V2VKBy1&key=AIzaSyALhwc_Au67HxWrh13h3Pjnf4fm0701zYQ" alt="Torisen Japanese yakitori &amp; bar photo 4" loading="lazy" /></div><div class="gallery-item "><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=AaVGc3n7hsCM2HCVFKu-GEW96qhyBD4eoZgPjLttts3lBMU9XcHI4ldVLuC2uxoNVguFCmii_9JnhI5T1knRpOF3ndwyxPA156urjqlCGrnjUHT2fwuXRGHkT4eGpUGLA5-k6R2vcigm-SSnLje5-7Du3BPCnPGcFEDnULOXHQ7iru7wwnrl7WwbVjCvd9dgLbyKpvEEr8CjCv1nDkUMpLygok7oNBkOa4qeMRHSU_F5TUZJ4JBw52NBYDikzMl82HNTQjyAU4fR68hQySJ5choIGULVeHOU1RAtBn4CrYwr5DVfnOL3f1TIKp0QfEwy0y28d4i2cWbI4arncW50CMnc3RDW4BmBJFs4nvJWuwCT-T1918sc9IxNqcCmhT5ZaJU7K_hSRv8CiVeX45AbFB3T-2sL4v5PXo8X-0jXGNvqstghw80rmJ2UB8pDiqMk1gX0&key=AIzaSyALhwc_Au67HxWrh13h3Pjnf4fm0701zYQ" alt="Torisen Japanese yakitori &amp; bar photo 5" loading="lazy" /></div><div class="gallery-item "><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=AaVGc3lzMxv9cIuYZjZx824npVOtyf-eRYHbPDWmsl6SZ3C-n-xpZu1oOWe_XoUOeSn7m_52S_RcWBQNwu-6--QWxpIeiaUPh4PX9_DCI8LmjtUUTgqiy20Vv9jzxd9pMQCabAIZQPuZyOcy73XnrCpb5kxDNopLdjPjCzAbAjxA96WZtgp8zeXJ1xTU4GDWzNFw1UZf8KJQ04g-TnTsU0loMC0AQDGWUPzRl3DFFE2Xstn2lVy6Qw7q-AXV5ekB4WDQKIely2nVVsEbNkS6GrgHXiFmmWKvOf2t81UFOo1Pu7iRbW8n9Rq5v-QNw_AxjVPZplXCsNDGBGy-FAnEzgkLzZMHpfkwTgFzl0hDLnRZ5im66e10ckSrembFn53-qkSnMzTF1G_9Pj62ZnBIWjHIHp3dxaAtswdhLT4d-LPjl7CEugqtjN5WzJfTh-3XUg&key=AIzaSyALhwc_Au67HxWrh13h3Pjnf4fm0701zYQ" alt="Torisen Japanese yakitori &amp; bar photo 6" loading="lazy" /></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="section reviews-section fade-in">
+        <div class="section-inner">
+            <p class="section-label">What People Say</p>
+            <h2 class="section-title"><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star-half-alt" style="color:#D4A017;"></span> <span style="font-size:0.5em; color:var(--text-muted); vertical-align:middle;">4.5/5 from 17 reviews</span></h2>
+            
+            <div class="reviews-carousel">
+                
+                <div class="review-slide active" data-index="0">
+                    <div class="review-stars"><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span></div>
+                    <p class="review-text">&ldquo;First time visiting, and will be coming back. The food is delicious, atmosphere is chill and the bartender is a cool dude. Forgot to take a picture of chicken thigh skewers, because they were exceptional!&rdquo;</p>
+                    <p class="review-author">&mdash; Marks Paskannijs</p>
+                </div>
+            
+                <div class="review-slide " data-index="1">
+                    <div class="review-stars"><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span></div>
+                    <p class="review-text">&ldquo;rlly good service and great food! Rlly enjoyable! Highly recommend ❤️&rdquo;</p>
+                    <p class="review-author">&mdash; Pu Rouyan</p>
+                </div>
+            
+                <div class="review-slide " data-index="2">
+                    <div class="review-stars"><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span></div>
+                    <p class="review-text">&ldquo;Great newly opened Japanese cuisine, great service and food!&rdquo;</p>
+                    <p class="review-author">&mdash; Bryan Ji</p>
+                </div>
+            
+                <div class="review-slide " data-index="3">
+                    <div class="review-stars"><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span></div>
+                    <p class="review-text">&ldquo;The food was absolutely delicious and beautifully presented. Although the dishes took a little longer than expected to arrive, the service made all the difference. The young waitress who looked after us was incredibly friendly, attentive and professional. She kept checking in on us, explained everything with a smile, and made sure we felt comfortable throughout the wait. Because of her warm attitude, we never felt frustrated at all. Great food and outstanding customer service – we’ll definitely be back!&rdquo;</p>
+                    <p class="review-author">&mdash; Christy</p>
+                </div>
+            
+                <div class="review-slide " data-index="4">
+                    <div class="review-stars"><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span><span class="fas fa-star" style="color:#D4A017;"></span></div>
+                    <p class="review-text">&ldquo;Really nice food. Nice service. Cant waitting for come back.&rdquo;</p>
+                    <p class="review-author">&mdash; Sayram</p>
+                </div>
+            
+                <div class="carousel-nav">
+                    <button class="carousel-prev"><span class="fas fa-chevron-left"></span></button>
+                    <span class="carousel-dot active" data-index="0"></span><span class="carousel-dot " data-index="1"></span><span class="carousel-dot " data-index="2"></span><span class="carousel-dot " data-index="3"></span><span class="carousel-dot " data-index="4"></span>
+                    <button class="carousel-next"><span class="fas fa-chevron-right"></span></button>
+                </div>
+            </div>
+        
+            <div style="margin-top:2em;">
+                <a href="https://maps.google.com/?cid=9111247743625204509" class="nav-cta" target="_blank" style="display:inline-block;padding:0.8em 2em;">View on Google</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation CTA -->
+    <section class="reserve-section fade-in">
+        <h2 class="section-title">Reserve Your Table</h2>
+        <p>Walk-ins welcome, but we recommend booking for groups of 4+.</p>
+        <a href="tel:" class="reserve-btn">Call to Book: </a>
+    </section>
+
+    <!-- Location -->
+    <section id="location" class="section fade-in">
+        <div class="section-inner">
+            <p class="section-label">Visit Us</p>
+            <h2 class="section-title" style="margin-bottom:2em;">Find Us</h2>
+            <div class="location-grid">
+                <div class="location-info">
+                    <h3>Address</h3>
+                    <p>Unit 2, Lower Severn St, Birmingham B1 1PU</p>
+                    <p style="margin-top:0.5em;"><a href="https://maps.google.com/?cid=9111247743625204509" target="_blank">Get Directions &rarr;</a></p>
+
+                    <h3 style="margin-top:2em;">Phone</h3>
+                    <p><a href="tel:"></a></p>
+
+                    <h3 style="margin-top:2em;">Opening Hours</h3>
+                    <ul class='hours-list'><li>Monday: Closed</li><li>Tuesday: 12:00 – 10:00 PM</li><li>Wednesday: 12:00 – 10:00 PM</li><li>Thursday: 12:00 – 10:00 PM</li><li>Friday: 12:00 – 11:30 PM</li><li>Saturday: 12:00 – 11:30 PM</li><li>Sunday: 12:00 – 9:30 PM</li></ul>
+                </div>
+                <div class="map-container">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Unit%202%2C%20Lower%20Severn%20St%2C%20Birmingham%20B1%201PU&output=embed"
+                        allowfullscreen=""
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-brand">Torisen Japanese yakitori &amp; bar</span>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#menu">Menu</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#location">Find Us</a>
+            </div>
+            <div class="footer-copy">
+                &copy; Torisen Japanese yakitori &amp; bar. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+    // Nav scroll effect
+    (function() {
+        var nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    })();
+
+    // Mobile nav toggle
+    (function() {
+        var toggle = document.getElementById('navToggle');
+        var links = document.getElementById('navLinks');
+        toggle.addEventListener('click', function() {
+            links.classList.toggle('open');
+        });
+        links.querySelectorAll('a').forEach(function(a) {
+            a.addEventListener('click', function() {
+                links.classList.remove('open');
+            });
+        });
+    })();
+
+    // Scroll animations
+    (function() {
+        var faders = document.querySelectorAll('.fade-in');
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        faders.forEach(function(el) { observer.observe(el); });
+    })();
+
+    // Menu category tabs
+    (function() {
+        var btns = document.querySelectorAll('.menu-cat-btn');
+        btns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                btns.forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                var cats = document.querySelectorAll('.menu-category');
+                cats.forEach(function(c) { c.classList.remove('active'); });
+                var target = document.getElementById('cat-' + btn.dataset.cat);
+                if (target) target.classList.add('active');
+            });
+        });
+    })();
+
+    // Reviews carousel
+    (function() {
+        var slides = document.querySelectorAll('.review-slide');
+        var dots = document.querySelectorAll('.carousel-dot');
+        var current = 0;
+        function show(idx) {
+            slides.forEach(function(s) { s.classList.remove('active'); });
+            dots.forEach(function(d) { d.classList.remove('active'); });
+            if (slides[idx]) slides[idx].classList.add('active');
+            if (dots[idx]) dots[idx].classList.add('active');
+            current = idx;
+        }
+        var prev = document.querySelector('.carousel-prev');
+        var next = document.querySelector('.carousel-next');
+        if (prev) prev.addEventListener('click', function(e) { e.preventDefault(); show((current - 1 + slides.length) % slides.length); });
+        if (next) next.addEventListener('click', function(e) { e.preventDefault(); show((current + 1) % slides.length); });
+        dots.forEach(function(d) { d.addEventListener('click', function() { show(parseInt(this.dataset.index)); }); });
+        setInterval(function() { if (slides.length > 1) show((current + 1) % slides.length); }, 7000);
+    })();
+    </script>
+
+</body>
+</html>
